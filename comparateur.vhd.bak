@@ -1,0 +1,24 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY comparateur IS
+	PORT (clk,raz: IN STD_LOGIC;
+			Q1,Q2,Q3,Q4: BUFFER STD_LOGIC);
+END compteur;
+
+ARCHITECTURE compteur OF compteur IS 
+component basculeJK
+	port(J,K,clk,reset:IN std_logic;
+			Q:BUFFER std_logic);
+end component;
+signal QB1,QB2,QB3,QB4:std_logic;
+BEGIN 
+	bit1: basculeJK port map ('1','1',clk,raz,QB1);
+	bit2: basculeJK port map ('1','1',NOT QB1,raz,QB2);
+	bit3: basculeJK port map ('1','1',NOT QB2,raz,QB3);
+	bit4: basculeJK port map ('1','1',NOT QB3,raz,QB4);
+	Q1 <= QB1;
+	Q2 <= QB2;
+	Q3 <= QB3;
+	Q4 <= QB4;
+END compteur;

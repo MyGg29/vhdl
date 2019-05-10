@@ -1,0 +1,152 @@
+|Affichage7Segment
+ok <= diviseurFrequence:inst3.OK
+CLOCK_50 => diviseurFrequence:inst3.CLK
+CLOCK_50 => sequenceur:inst8.CLK
+CLOCK_50 => antiRebond:inst1.CLK
+constant[0] <= LPM_CONSTANT:inst4.result[0]
+constant[1] <= LPM_CONSTANT:inst4.result[1]
+constant[2] <= LPM_CONSTANT:inst4.result[2]
+cpteur[0] <= sequenceur:inst8.COMPTEUR[0]
+cpteur[1] <= sequenceur:inst8.COMPTEUR[1]
+cpteur[2] <= sequenceur:inst8.COMPTEUR[2]
+KEY[0] => antiRebond:inst1.ENTREE_BOUTON
+HEX0[0] <= decodeur:inst.S[0]
+HEX0[1] <= decodeur:inst.S[1]
+HEX0[2] <= decodeur:inst.S[2]
+HEX0[3] <= decodeur:inst.S[3]
+HEX0[4] <= decodeur:inst.S[4]
+HEX0[5] <= decodeur:inst.S[5]
+
+
+|Affichage7Segment|diviseurFrequence:inst3
+CLK => OK~reg0.CLK
+CLK => compteur[0].CLK
+CLK => compteur[1].CLK
+CLK => compteur[2].CLK
+CLK => compteur[3].CLK
+CLK => compteur[4].CLK
+CLK => compteur[5].CLK
+CLK => compteur[6].CLK
+CLK => compteur[7].CLK
+CLK => compteur[8].CLK
+CLK => compteur[9].CLK
+CLK => compteur[10].CLK
+CLK => compteur[11].CLK
+CLK => compteur[12].CLK
+CLK => compteur[13].CLK
+CLK => compteur[14].CLK
+CLK => compteur[15].CLK
+CLK => compteur[16].CLK
+CLK => compteur[17].CLK
+CLK => compteur[18].CLK
+CLK => compteur[19].CLK
+CLK => compteur[20].CLK
+CLK => compteur[21].CLK
+CLK => compteur[22].CLK
+CLK => compteur[23].CLK
+OK <= OK~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Affichage7Segment|LPM_CONSTANT:inst4
+result[0] <= <GND>
+result[1] <= <VCC>
+result[2] <= <VCC>
+
+
+|Affichage7Segment|sequenceur:inst8
+pin_name1 <= comparateur:inst2.EGAL
+updown => comparateur:inst2.UPDOWN
+updown => compteur:inst1.updown
+MODULE[0] => comparateur:inst2.A[0]
+MODULE[1] => comparateur:inst2.A[1]
+MODULE[2] => comparateur:inst2.A[2]
+CLK => compteur:inst1.clk
+VCC_ENABLE => compteur:inst1.enable
+COMPTEUR[0] <= compteur:inst1.Q[0]
+COMPTEUR[1] <= compteur:inst1.Q[1]
+COMPTEUR[2] <= compteur:inst1.Q[2]
+
+
+|Affichage7Segment|sequenceur:inst8|comparateur:inst2
+A[0] => Equal0.IN2
+A[1] => Equal0.IN1
+A[2] => Equal0.IN0
+B[0] => Equal0.IN5
+B[0] => Equal1.IN2
+B[1] => Equal0.IN4
+B[1] => Equal1.IN1
+B[2] => Equal0.IN3
+B[2] => Equal1.IN0
+UPDOWN => EGAL.IN1
+UPDOWN => EGAL.IN1
+EGAL <= EGAL.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Affichage7Segment|sequenceur:inst8|compteur:inst1
+clk => tmp[0].CLK
+clk => tmp[1].CLK
+clk => tmp[2].CLK
+raz => tmp.OUTPUTSELECT
+raz => tmp.OUTPUTSELECT
+raz => tmp.OUTPUTSELECT
+enable => tmp.OUTPUTSELECT
+enable => tmp.OUTPUTSELECT
+enable => tmp.OUTPUTSELECT
+updown => tmp.OUTPUTSELECT
+updown => tmp.OUTPUTSELECT
+updown => tmp.OUTPUTSELECT
+updown => tmp.DATAB
+updown => tmp.DATAB
+Q[0] <= tmp[0].DB_MAX_OUTPUT_PORT_TYPE
+Q[1] <= tmp[1].DB_MAX_OUTPUT_PORT_TYPE
+Q[2] <= tmp[2].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Affichage7Segment|antiRebond:inst1
+ENTREE_BOUTON => process_0.IN0
+ENTREE_BOUTON => process_0.IN0
+ENTREE_BOUTON => process_0.IN0
+ENTREE_BOUTON => process_0.IN0
+ENTREE_BOUTON => process_0.IN0
+ENTREE_BOUTON => process_0.IN0
+CLK_ENABLE => process_0.IN1
+CLK_ENABLE => process_0.IN1
+CLK_ENABLE => process_0.IN1
+CLK_ENABLE => process_0.IN1
+CLK_ENABLE => etatFutur.ETAT0.OUTPUTSELECT
+CLK_ENABLE => etatFutur.ETAT1.OUTPUTSELECT
+CLK_ENABLE => etatFutur.ETAT2.OUTPUTSELECT
+CLK_ENABLE => etatFutur.ETAT3.OUTPUTSELECT
+CLK_ENABLE => process_0.IN1
+CLK_ENABLE => process_0.IN1
+CLK => etatPresent~1.DATAIN
+UPDOWN <= process_1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Affichage7Segment|decodeur:inst
+Q[0] => Mux0.IN10
+Q[0] => Mux1.IN10
+Q[0] => Mux2.IN10
+Q[0] => Mux3.IN10
+Q[0] => Mux4.IN10
+Q[0] => Mux5.IN10
+Q[1] => Mux0.IN9
+Q[1] => Mux1.IN9
+Q[1] => Mux2.IN9
+Q[1] => Mux3.IN9
+Q[1] => Mux4.IN9
+Q[1] => Mux5.IN9
+Q[2] => Mux0.IN8
+Q[2] => Mux1.IN8
+Q[2] => Mux2.IN8
+Q[2] => Mux3.IN8
+Q[2] => Mux4.IN8
+Q[2] => Mux5.IN8
+S[0] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+S[1] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+S[2] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+S[3] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+S[4] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+S[5] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+

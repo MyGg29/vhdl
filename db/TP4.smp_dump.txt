@@ -1,0 +1,7 @@
+
+State Machine - |Affichage7Segment|antiRebond:inst1|etatPresent
+Name etatPresent.ETAT3 etatPresent.ETAT2 etatPresent.ETAT1 etatPresent.ETAT0 
+etatPresent.ETAT0 0 0 0 0 
+etatPresent.ETAT1 0 0 1 1 
+etatPresent.ETAT2 0 1 0 1 
+etatPresent.ETAT3 1 0 0 1 
